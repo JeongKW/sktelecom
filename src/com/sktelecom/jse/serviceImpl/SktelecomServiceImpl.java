@@ -21,10 +21,13 @@ public class SktelecomServiceImpl implements SktelecomService{
 		String number = "010-";
 		int temp = 0;
 		for(int i = 0; i < 2; i++) {
-			temp = (int)(Math.random() * 9000) + 1000;
-			number += temp;
 			if(i == 0) {
+				temp = (int)(Math.random() * 9000) + 1000;
+				number += temp;
 				number += "-";
+			} else {				
+				temp = (int)(Math.random() * 10000);
+				number += temp;
 			}
 		}
 		return number;
@@ -75,7 +78,7 @@ public class SktelecomServiceImpl implements SktelecomService{
 			for(int i = 0 ; 
 					i < membersCount && i < phonesCount; 
 					i++) {
-				if(members[i].getCustomNum().equals(phones[i].getCustomNum())){
+				if(members[i].getCustomNum().equalsIgnoreCase(phones[i].getCustomNum())){
 					res[i] = members[i].getName().concat(phones[i].getPhoneNumber());
 				}
 			}
