@@ -73,7 +73,7 @@ public class SktelecomServiceImpl implements SktelecomService{
 		} else {
 			res = new String[count];
 			for(int i = 0 ; 
-					i < membersCount || i < phonesCount; 
+					i < membersCount && i < phonesCount; 
 					i++) {
 				if(members[i].getCustomNum().equals(phones[i].getCustomNum())){
 					res[i] = members[i].getName().concat(phones[i].getPhoneNumber());
