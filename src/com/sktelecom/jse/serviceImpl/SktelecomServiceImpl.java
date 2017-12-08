@@ -27,7 +27,11 @@ public class SktelecomServiceImpl implements SktelecomService{
 				number += "-";
 			} else {				
 				temp = (int)(Math.random() * 10000);
-				number += temp;
+				if(temp < 1000) {
+					number += "0" + temp;
+				} else {
+					number += temp;
+				}
 			}
 		}
 		return number;
