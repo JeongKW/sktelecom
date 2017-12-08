@@ -23,15 +23,10 @@ public class SktelecomServiceImpl implements SktelecomService{
 		for(int i = 0; i < 2; i++) {
 			if(i == 0) {
 				temp = (int)(Math.random() * 9000) + 1000;
-				number += temp;
-				number += "-";
-			} else {				
+				number += temp + "-";
+			} else {
 				temp = (int)(Math.random() * 10000);
-				if(temp < 1000) {
-					number += "0" + temp;
-				} else {
-					number += temp;
-				}
+				number += (temp < 1000) ? "0" + temp : temp;
 			}
 		}
 		return number;
