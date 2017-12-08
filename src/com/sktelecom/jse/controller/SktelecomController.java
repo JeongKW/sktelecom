@@ -17,7 +17,11 @@ public class SktelecomController {
 					null,
 					"[0] 종료\n"
 					+ "[1] 개통\n"
-					+ "[2] 회원리스트\n")) {
+					+ "[2] 회원리스트\n"
+					+ "[3] 회원번호로조회\n"
+					+ "[4] 이름으로조회\n"
+					+ "[5] 번호이동\n"
+					+ "[6] 회원탈퇴")) {
 				case "0":
 					JOptionPane.showMessageDialog(null, "안녕히가세요. 고객님");
 					return;
@@ -41,6 +45,33 @@ public class SktelecomController {
 				case "2":
 					JOptionPane.showMessageDialog(
 							null, sktelecomService.memberList());
+					break;
+				case "3":
+					JOptionPane.showMessageDialog(null, sktelecomService
+							.findByKey(JOptionPane
+									.showInputDialog("회원번호 입력")));
+					break;
+				case "4":
+					JOptionPane.showMessageDialog(null, 
+							sktelecomService
+							.findByName(JOptionPane
+									.showInputDialog("회원이름 입력")));
+					break;
+				case "5":
+					String key = JOptionPane
+							.showInputDialog("회원번호 입력");
+					sktelecomService.updatePhoneNumber(key);
+					JOptionPane.showMessageDialog(
+							null, 
+							sktelecomService.findByKey(key));
+					break;
+				case "6":
+					sktelecomService
+					.deleteMember(
+						JOptionPane
+						.showInputDialog("회원번호 입력"));
+					JOptionPane.showMessageDialog(null, 
+							"탈퇴가 완료되었습니다");
 					break;
 				default:
 					break;

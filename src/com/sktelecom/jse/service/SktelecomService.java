@@ -9,4 +9,8 @@ public interface SktelecomService {
 	public void addUser(MemberBean member, PhoneBean phone);
 	public String createCustomNum();
 	public String[] memberList();
+	public String findByKey(String key);
+	public String findByName(String name);
+	public void updatePhoneNumber(String key);
+	public void deleteMember(String key);
 }

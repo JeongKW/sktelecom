@@ -78,11 +78,70 @@ public class SktelecomServiceImpl implements SktelecomService{
 					i < membersCount && i < phonesCount; 
 					i++) {
 				if(members[i].getCustomNum().equalsIgnoreCase(phones[i].getCustomNum())){
-					res[i] = members[i].getName().concat(phones[i].getPhoneNumber());
+					res[i] = "[고객명] " + members[i].getName().concat(" [번호] " + phones[i].getPhoneNumber());
 				}
 			}
 		}
 		return res;
 	}
-	
+
+	@Override
+	public String findByKey(String key) {
+		String res = "";
+		for(int i = 0; i < membersCount; i++) {
+			if(key.equalsIgnoreCase(members[i].getCustomNum()) 
+				&& key.equalsIgnoreCase(phones[i].getCustomNum())) {
+				res = String.format("[고객번호] %s [고객명] %s [번호] %s [기종] %s\n",
+						members[i].getCustomNum(), members[i].getName(), 
+						phones[i].getPhoneNumber(), phones[i].getName());
+				break;
+			}
+		}
+		return res;
+	}
+
+	@Override
+	public String findByName(String name) {
+		String res = "";
+		for(int i = 0; i < membersCount; i++) {
+			if(name.equalsIgnoreCase(members[i].getName())) {
+				res += String.format("[고객번호] %s [고객명] %s [번호] %s [기종] %s\n",
+						members[i].getCustomNum(), members[i].getName(), 
+						phones[i].getPhoneNumber(), phones[i].getName());
+			}
+		}
+		return res;
+	}
+
+	@Override
+	public void updatePhoneNumber(String key) {
+		for(int i = 0; i < membersCount; i++) {
+			if(key.equalsIgnoreCase(members[i].getCustomNum())) {
+				phones[i].setPhoneNumber(createPhoneNumber());
+				break;
+			}
+		}
+	}
+
+	@Override
+	public void deleteMember(String key) {
+		PhoneBean[] tempPhones = phones;
+		MemberBean[] tempMembers = members;
+		for(int i = 0; i < membersCount; i++) {
+			if(key.equalsIgnoreCase(tempMembers[i].getCustomNum())) {
+				members = new MemberBean[membersCount-1];
+				phones = new PhoneBean[phonesCount-1];
+				for(int j = i; j < membersCount-1; j++) {
+					tempPhones[j] = tempPhones[j+1];
+					tempMembers[j] = tempMembers[j+1];
+				}
+			}
+		}
+		for(int i = 0; i < membersCount-1; i++) {
+			phones[i] = tempPhones[i];
+			members[i] = tempMembers[i];
+		}
+		membersCount = membersCount - 1;
+		phonesCount = phonesCount - 1;
+	}
 }
