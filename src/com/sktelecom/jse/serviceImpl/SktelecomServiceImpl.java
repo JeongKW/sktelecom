@@ -138,11 +138,13 @@ public class SktelecomServiceImpl implements SktelecomService{
 				break;
 			}
 		}
-		for(int i = 0; i < membersCount-1; i++) {
-			phones[i] = tempPhones[i];
-			members[i] = tempMembers[i];
-		}
-		membersCount--;
-		phonesCount--;
+		System.arraycopy(tempPhones, 0, phones, 0, --membersCount);
+		System.arraycopy(tempMembers, 0, members, 0, --phonesCount);
+//		for(int i = 0; i < membersCount-1; i++) {
+//			phones[i] = tempPhones[i];
+//			members[i] = tempMembers[i];
+//		}
+//		membersCount--;
+//		phonesCount--;
 	}
 }
