@@ -135,13 +135,14 @@ public class SktelecomServiceImpl implements SktelecomService{
 					tempPhones[j] = tempPhones[j+1];
 					tempMembers[j] = tempMembers[j+1];
 				}
+				break;
 			}
 		}
 		for(int i = 0; i < membersCount-1; i++) {
 			phones[i] = tempPhones[i];
 			members[i] = tempMembers[i];
 		}
-		membersCount = membersCount - 1;
-		phonesCount = phonesCount - 1;
+		membersCount--;
+		phonesCount--;
 	}
 }
